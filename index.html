@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Zeekr style by Hudson</title>
+<link rel="stylesheet" href="style.css?v=20260910-3">
+    <link rel="stylesheet" href="zeekr.css?v=20260910-22">
+</head>
+<body>
+
+<div id="bg" aria-hidden="true"></div>
+
+<div id="root">
+<div class="overlay" id="overlay"></div>
+  <!-- Верх -->
+  <div id="top-left">
+      <button type="button" class="top-btn top-btn-settings" id="btn-settings" aria-label="Настройки">
+        <svg width="22" height="22" viewBox="-2 -2 28 28" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 8.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4Z"/>
+          <path d="M18.5 12a6.5 6.5 0 0 0-.08-1.02l2.02-1.55-1.9-3.3-2.36.94a6.7 6.7 0 0 0-1.76-1.02L14.05 3h-3.8l-.37 3.05c-.63.24-1.22.59-1.76 1.02l-2.36-.94-1.9 3.3 2.02 1.55a6.7 6.7 0 0 0 0 2.04l-2.02 1.55 1.9 3.3 2.36-.94c.54.43 1.13.78 1.76 1.02l.37 3.05h3.8l.37-3.05c.63-.24 1.22-.59 1.76-1.02l2.36.94 1.9-3.3-2.02-1.55c.05-.33.08-.67.08-1.02Z"/>
+        </svg>
+      </button>
+      <button type="button" class="top-btn top-btn-settings" id="btn-overlay" aria-label="Затемнение" aria-pressed="false">
+        <svg width="22" height="22" viewBox="0 0 16 16" fill="currentColor">
+  <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"></path>
+  <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"></path>
+</svg>
+      </button>
+      <button type="button" class="top-btn top-btn-settings" id="btn-mini-map" aria-label="Показать мини-карту" aria-pressed="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m3 6 5-2 8 3 5-2v13l-5 2-8-3-5 2V6Z"/>
+          <path d="M8 4v13M16 7v13"/>
+          <path d="m10.5 12 2-2 2 2"/>
+        </svg>
+      </button>
+      <div id="top-left-climate-controls"></div>
+      <div id="top-left-shutter-controls"></div>
+      <div id="seat-controls-staging" aria-hidden="true">
+        <div id="driver-seat-staging"></div>
+        <div id="passenger-seat-staging"></div>
+      </div>
+    </div>
+
+  <div id="top">
+    <!-- Плеер -->
+    <div id="player-row">
+      <div id="player">
+        <div class="player-controls">
+          <button type="button" class="ctrl-btn" id="btn-prev" aria-label="Предыдущий трек">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 6l-8.5 6L18 18V6zM6 6h2v12H6z"/></svg>
+          </button>
+          <button type="button" class="ctrl-btn play" id="btn-play" aria-label="Воспроизведение">
+            <svg id="icon-play" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="icon-pause" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <button type="button" class="ctrl-btn" id="btn-next" aria-label="Следующий трек">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6h2v12h-2z"/></svg>
+          </button>
+        </div>
+        <div class="player-content">
+          <div class="player-info">
+            <div id="track-title">Не воспроизводится</div>
+            <div id="track-artist">—</div>
+            <div class="player-progress-row">
+              <span class="player-time" id="time-cur">0:00</span>
+              <div class="player-progress-bar"><div class="player-progress-fill" id="progress-fill"></div></div>
+              <span class="player-time" id="time-dur">0:00</span>
+            </div>
+          </div>
+          <img id="album-art" class="empty" src="img/music-placeholder.svg" alt="">
+        </div>
+      </div>
+    </div>
+
+    <!--<div id="weather-widget" class="weather-widget" aria-label="Погода">
+      <div class="weather-widget-now">
+        <div id="weather-icon" class="weather-widget-icon" aria-hidden="true"></div>
+        <div class="weather-widget-meta">
+          <div id="weather-temp" class="weather-widget-temp">--°</div>
+          <div id="weather-desc" class="weather-widget-desc">—</div>
+        </div>
+      </div>
+      <div id="weather-forecast" class="weather-widget-forecast"></div>
+    </div>-->
+    <div id="top-right">
+      <div id="clock-block">
+        <div id="clock">00:00</div>
+        <div id="date">1 января · Ср</div>
+        <div id="outside-temp">За бортом —°</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="mini-map-panel" hidden aria-hidden="true" aria-label="Навигация и мини-карта">
+    <img id="mini-map-image" alt="Мини-карта маршрута">
+    <div id="mini-map-placeholder">
+      <div class="mini-map-placeholder-icon" aria-hidden="true">⌖</div>
+      <div id="mini-map-placeholder-text">Ожидание данных карты…</div>
+    </div>
+
+    <div class="mini-map-top-row">
+      <div class="mini-map-glass mini-map-gps" id="mini-map-gps">
+        <div class="mini-map-gps-bars" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <span id="mini-map-gps-text">GPS —</span>
+      </div>
+
+      <div class="mini-map-glass mini-map-radar" id="mini-map-radar" hidden>
+        <span class="mini-map-kicker">РАДАР</span>
+        <strong id="mini-map-radar-distance">—</strong>
+        <span id="mini-map-radar-limit">Ограничение —</span>
+      </div>
+
+      <div class="mini-map-speed-limit" id="mini-map-speed-limit" hidden>
+        <span id="mini-map-speed-limit-value">—</span>
+      </div>
+    </div>
+
+    <div class="mini-map-glass mini-map-navigation" id="mini-map-navigation">
+      <div class="mini-map-turn-icon" id="mini-map-turn-icon" aria-hidden="true">↑</div>
+      <div class="mini-map-route-info">
+        <div class="mini-map-distance-row">
+          <strong id="mini-map-turn-distance">—</strong>
+          <span id="mini-map-remain-distance"></span>
+        </div>
+        <div id="mini-map-next-road">Маршрут не запущен</div>
+      </div>
+    </div>
+  </section>
+
+  <div id="dock">
+    <div id="dock-extra">
+      <div class="temp-row" id="temp-row">
+        <div class="dock-zone dock-zone-left">
+        <button type="button" class="dock-utility-btn" id="dock-apps-all" aria-label="Открыть все приложения">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" rx="2"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="2"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="2"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="2"></rect>
+          </svg>
+        </button>
+
+        <div class="seat-dock-control" id="driver-seat-dock">
+          <button type="button" class="dock-seat-btn" id="dock-driver-seat" aria-label="Настройки сиденья водителя" aria-expanded="false">
+            <img class="dock-seat-state-icon" src="icons/seat.svg" alt="">
+            <span class="dock-seat-level-dots" aria-hidden="true">
+              <i></i><i></i><i></i>
+            </span>
+          </button>
+          <div class="seat-popover" id="driver-seat-popover" aria-hidden="true">
+            <div class="seat-popover-title">Сиденье водителя</div>
+            <div class="seat-popover-controls" id="driver-seat-popup-controls"></div>
+          </div>
+        </div>
+
+        <div class="temp-block" id="temp-block-driver">
+          <div class="temp-controls">
+            <button type="button" class="temp-btn temp-btn-down" id="btn-driver-temp-down" aria-label="Температура водителя ниже">
+              <span class="temp-btn-icon temp-btn-icon-minus" aria-hidden="true"></span>
+            </button>
+            <div class="temp-display" id="temp-driver-value">—°</div>
+            <button type="button" class="temp-btn temp-btn-up" id="btn-driver-temp-up" aria-label="Температура водителя выше">
+              <span class="temp-btn-icon temp-btn-icon-plus" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+        </div>
+
+        <div class="card" id="card-apps">
+          <div id="body-apps">
+            <div class="my-grid" id="my-grid"></div>
+          </div>
+        </div>
+
+        <div class="dock-zone dock-zone-right">
+        <div class="temp-block" id="temp-block-passenger">
+          <div class="temp-controls">
+            <button type="button" class="temp-btn temp-btn-down" id="btn-passenger-temp-down" aria-label="Температура пассажира ниже">
+              <span class="temp-btn-icon temp-btn-icon-minus" aria-hidden="true"></span>
+            </button>
+            <div class="temp-display" id="temp-passenger-value">—°</div>
+            <button type="button" class="temp-btn temp-btn-up" id="btn-passenger-temp-up" aria-label="Температура пассажира выше">
+              <span class="temp-btn-icon temp-btn-icon-plus" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="seat-dock-control" id="passenger-seat-dock">
+          <button type="button" class="dock-seat-btn" id="dock-passenger-seat" aria-label="Настройки сиденья пассажира" aria-expanded="false">
+            <img class="dock-seat-state-icon" src="icons/seat.svg" alt="">
+            <span class="dock-seat-level-dots" aria-hidden="true">
+              <i></i><i></i><i></i>
+            </span>
+          </button>
+          <div class="seat-popover" id="passenger-seat-popover" aria-hidden="true">
+            <div class="seat-popover-title">Сиденье пассажира</div>
+            <div class="seat-popover-controls" id="passenger-seat-popup-controls"></div>
+          </div>
+        </div>
+
+        <div class="volume-block volume-block-center" id="volume-block-center">
+          <div class="volume-controls" id="volume-controls"></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<section id="rpm-log-panel" aria-label="Журнал событий оборотов двигателя">
+  <div id="rpm-log-title">Журнал RPM</div>
+  <div id="rpm-log-status" data-state="waiting">Ожидание событий оборотов…</div>
+  <pre id="rpm-log-output">Данные появятся после первого события rpm от JCarTools.</pre>
+</section>
+
+<!-- Шторка приложений -->
+<div id="apps-drawer" aria-hidden="true">
+  <div class="apps-dialog" role="dialog" aria-modal="true" aria-labelledby="apps-drawer-title">
+    <div class="drawer-header">
+      <span class="drawer-title" id="apps-drawer-title">Приложения</span>
+      <button class="drawer-close" id="drawer-close" aria-label="Закрыть приложения">×</button>
+    </div>
+    <div id="apps-grid"></div>
+  </div>
+</div>
+
+<!-- Настройки -->
+<div id="settings-backdrop" class="settings-hidden">
+  <div id="settings-dialog" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <div class="settings-header">
+      <div id="settings-title">Настройки</div>
+      <button type="button" class="settings-close" id="settings-close" aria-label="Закрыть настройки">×</button>
+    </div>
+
+    <div class="settings-body">
+      <div class="settings-row settings-row-theme">
+        <div class="settings-label">Тема</div>
+        <div class="settings-segment" id="settings-theme">
+          <label><input type="radio" name="settings-theme" value="auto"><span>Авто</span></label>
+          <label><input type="radio" name="settings-theme" value="light"><span>Светлая</span></label>
+          <label><input type="radio" name="settings-theme" value="dark"><span>Темная</span></label>
+        </div>
+      </div>
+
+      <div class="settings-row settings-row-accent">
+        <div class="settings-label">Цвет</div>
+        <div class="accent-btns" id="accent-btns"></div>
+      </div>
+
+      <div class="settings-row settings-row-scale">
+        <div class="settings-label">Размер</div>
+        <div class="settings-segment" id="settings-scale">
+          <label><input type="radio" name="settings-scale" value="l"><span>L</span></label>
+          <label><input type="radio" name="settings-scale" value="m"><span>M</span></label>
+          <label><input type="radio" name="settings-scale" value="s"><span>S</span></label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('btn-overlay').addEventListener('click', function() {
+  const toggleDiv = document.getElementById('overlay');
+  const active = toggleDiv.classList.toggle('hidden');
+  this.classList.toggle('active', active);
+  this.setAttribute('aria-pressed', String(active));
+});
+</script>
+<script src="icons-data.js?v=20260910-2"></script>
+<script src="js/00-config.js?v=20260910-2"></script>
+<script src="js/01-utils.js?v=20260910-2"></script>
+<script src="js/12-rpm-log.js"></script>
+<script src="js/02-theme.js"></script>
+<script src="js/03-volume.js?v=20260910-2"></script>
+<!-- Изолированный первичный опрос громкости: эту строку можно удалить для отключения. -->
+<script src="js/03-volume-initial-sync.js?v=20260910-1"></script>
+<script src="js/03-player.js"></script>
+<script src="js/04-climate.js"></script>
+<script src="js/05-temp.js?v=20260910-1"></script>
+<script src="js/05-outside-temp.js"></script>
+<script src="js/05-climate-feedback.js?v=20260910-3"></script>
+<script src="js/06-apps.js"></script>
+<script src="js/07-layout.js"></script>
+<script src="js/10-weather.js"></script>
+<script src="js/11-dashboard-settings.js"></script>
+<script src="js/13-mini-map.js"></script>
+<script src="js/14-zeekr-dock.js?v=20260910-8"></script>
+<script src="js/08-android.js"></script>
+<script src="js/09-init.js?v=20260910-1"></script>
+</body>
+</html>
