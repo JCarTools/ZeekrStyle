@@ -144,7 +144,7 @@ const MuteManager = (() => {
     const btn = el('btn-mute');
     if (!btn || btn.dataset.muteBound === '1') return;
     btn.dataset.muteBound = '1';
-    btn.innerHTML = '<span class="volume-percent" aria-hidden="true">50%</span>';
+    btn.innerHTML = '<span class="volume-percent" aria-hidden="true">19%</span>';
     btn.addEventListener('click', toggle);
     VolumeManager.subscribe(onVolumeChange);
     syncFromDevice();

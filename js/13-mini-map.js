@@ -181,7 +181,9 @@ const MiniMapPanel = (() => {
   }
 
   function setOpen(value) {
-    opened = !!value;
+    const nextOpened = !!value;
+    if (nextOpened && typeof window.closeDrawer === 'function') window.closeDrawer();
+    opened = nextOpened;
     if (!panel || !button) return;
     if (closeTimer) {
       clearTimeout(closeTimer);

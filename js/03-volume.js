@@ -6,7 +6,7 @@ const VolumeManager = (() => {
   const DIRECT_COMMIT_MS = 180;
   const POLL_MS = 1000;
 
-  let currentVolume = 50;
+  let currentVolume = 19;
   let lastSetValue = null;
   let lastSetTime = 0;
   let mode = null;

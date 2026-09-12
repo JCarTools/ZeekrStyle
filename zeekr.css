@@ -116,6 +116,77 @@ body {
   z-index: 12;
 }
 
+.zeekr-brand {
+  position: fixed;
+  z-index: 25;
+  top: calc(18px * var(--ui-scale));
+  left: 50%;
+  min-width: calc(188px * var(--ui-scale));
+  height: calc(76px * var(--ui-scale));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 calc(22px * var(--ui-scale));
+  color: var(--accent-contrast);
+  transform: translateX(-50%);
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.zeekr-brand-mark {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: calc(24px * var(--ui-scale));
+  background:
+    radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.42), transparent 44%),
+    linear-gradient(135deg, rgba(var(--accent-rgb), 1) 0%, rgba(var(--accent-rgb), 0.76) 52%, rgba(var(--accent-rgb), 0.94) 100%);
+  box-shadow:
+    0 calc(12px * var(--ui-scale)) calc(38px * var(--ui-scale)) rgba(var(--accent-rgb), 0.46),
+    0 0 calc(22px * var(--ui-scale)) rgba(var(--accent-rgb), 0.28),
+    inset 0 1px rgba(255, 255, 255, 0.44),
+    inset 0 calc(-12px * var(--ui-scale)) calc(24px * var(--ui-scale)) rgba(8, 6, 20, 0.14);
+  backdrop-filter: blur(22px) saturate(155%);
+  -webkit-backdrop-filter: blur(22px) saturate(155%);
+}
+
+.zeekr-brand-logo {
+  width: calc(144px * var(--ui-scale));
+  height: auto;
+  display: block;
+  filter: brightness(0) invert(1) drop-shadow(0 calc(3px * var(--ui-scale)) calc(12px * var(--ui-scale)) rgba(20, 10, 50, 0.38));
+}
+
+html[data-theme="light"] .zeekr-brand {
+  color: var(--accent-contrast);
+}
+
+html[data-theme="light"] .zeekr-brand-mark {
+  background:
+    radial-gradient(circle at 28% 0%, rgba(255, 255, 255, 0.5), transparent 44%),
+    linear-gradient(135deg, rgba(var(--accent-rgb), 0.98) 0%, rgba(var(--accent-rgb), 0.72) 52%, rgba(var(--accent-rgb), 0.9) 100%);
+  box-shadow:
+    0 calc(12px * var(--ui-scale)) calc(38px * var(--ui-scale)) rgba(var(--accent-rgb), 0.34),
+    0 0 calc(20px * var(--ui-scale)) rgba(var(--accent-rgb), 0.22),
+    inset 0 1px rgba(255, 255, 255, 0.54),
+    inset 0 calc(-12px * var(--ui-scale)) calc(24px * var(--ui-scale)) rgba(30, 24, 58, 0.1);
+}
+
+html[data-theme="light"] .zeekr-brand-logo {
+  filter: brightness(0) saturate(100%) drop-shadow(0 calc(3px * var(--ui-scale)) calc(12px * var(--ui-scale)) rgba(255, 255, 255, 0.22));
+}
+
+@media (max-width: 1100px) {
+  .zeekr-brand {
+    min-width: calc(152px * var(--ui-scale));
+    padding-inline: calc(14px * var(--ui-scale));
+  }
+
+  .zeekr-brand-logo {
+    width: calc(122px * var(--ui-scale));
+  }
+}
+
 #top-left {
   position: fixed;
   z-index: 30;
@@ -130,7 +201,7 @@ body {
   justify-content: flex-start;
   border: 0;
   border-radius: calc(24px * var(--ui-scale));
-  background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.1), rgba(var(--accent-rgb), 0.025)), rgba(7, 9, 13, 0.96);
+  background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.1), rgba(var(--accent-rgb), 0.025)), rgba(7, 9, 13, 0.76);
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(28px) saturate(125%);
   -webkit-backdrop-filter: blur(28px) saturate(125%);
@@ -599,13 +670,13 @@ html[data-theme="light"] #temp-row #volume-block-center {
 .dock-seat-btn.active .dock-seat-level-dots { opacity: 1; }
 
 .dock-seat-btn[data-mode="heat"] .dock-seat-level-dots i.on {
-  background: var(--accent);
-  box-shadow: 0 0 calc(8px * var(--ui-scale)) rgba(var(--accent-rgb), 0.62);
+  background: rgb(255, 156, 174);
+  box-shadow: 0 0 calc(8px * var(--ui-scale)) rgba(255, 156, 174, 0.62);
 }
 
 .dock-seat-btn[data-mode="vent"] .dock-seat-level-dots i.on {
-  background: var(--accent);
-  box-shadow: 0 0 calc(8px * var(--ui-scale)) rgba(var(--accent-rgb), 0.62);
+  background: rgb(135, 185, 255);
+  box-shadow: 0 0 calc(8px * var(--ui-scale)) rgba(135, 185, 255, 0.62);
 }
 
 .dock-seat-btn[data-mode="heat"] img {
@@ -1192,6 +1263,10 @@ html[data-theme="light"] .seat-popover {
   box-shadow: 0 22px 55px rgba(34, 43, 56, 0.14), inset 0 1px rgba(255,255,255,.86);
 }
 
+html[data-theme="light"] #top-left {
+  background: linear-gradient(145deg, rgba(255,255,255,.68), rgba(var(--accent-rgb),.06)), rgba(244,247,251,.7);
+}
+
 html[data-theme="light"] #top-left .top-btn,
 html[data-theme="light"] #top-left .cl-btn,
 html[data-theme="light"] .seat-popover .cl-btn {
@@ -1251,14 +1326,14 @@ html[data-theme="light"] .settings-switch span {
 /* Final dashboard surface and motion refinements. */
 #dock-extra #temp-row {
   border: 0;
-  background: rgb(9, 11, 19);
-  background: color-mix(in srgb, rgb(var(--accent-rgb)) 2.5%, rgb(7, 9, 13) 97.5%);
+  background: rgba(9, 11, 19, 0.8);
+  background: color-mix(in srgb, rgba(var(--accent-rgb), 0.8) 2.5%, rgba(7, 9, 13, 0.8) 97.5%);
 }
 
 html[data-theme="light"] #dock-extra #temp-row {
   border: 0;
-  background: rgb(233, 235, 243);
-  background: color-mix(in srgb, rgb(var(--accent-rgb)) 8%, rgb(244, 247, 251) 92%);
+  background: rgba(233, 235, 243, 0.8);
+  background: color-mix(in srgb, rgba(var(--accent-rgb), 0.8) 8%, rgba(244, 247, 251, 0.8) 92%);
 }
 
 #btn-settings,
@@ -1618,8 +1693,8 @@ html[data-theme="light"] .settings-switch input:checked + span::after {
     right: 0;
     bottom: 0;
     height: var(--dock-main-row-height);
-    background: rgb(9, 11, 19);
-    background: color-mix(in srgb, rgb(var(--accent-rgb)) 2.5%, rgb(7, 9, 13) 97.5%);
+    background: rgba(9, 11, 19, 0.8);
+    background: color-mix(in srgb, rgba(var(--accent-rgb), 0.8) 2.5%, rgba(7, 9, 13, 0.8) 97.5%);
     box-shadow: 0 -18px 48px rgba(0, 0, 0, 0.28);
     backdrop-filter: blur(28px) saturate(125%);
     -webkit-backdrop-filter: blur(28px) saturate(125%);
@@ -1692,7 +1767,12 @@ html[data-theme="light"] .settings-switch input:checked + span::after {
     box-shadow: none;
   }
 
-  html[data-theme="light"] #dock-extra #temp-row::before,
+  html[data-theme="light"] #dock-extra #temp-row::before {
+    background: rgba(233, 235, 243, 0.8);
+    background: color-mix(in srgb, rgba(var(--accent-rgb), 0.8) 8%, rgba(244, 247, 251, 0.8) 92%);
+    box-shadow: 0 -14px 38px rgba(40, 49, 63, 0.12);
+  }
+
   html[data-theme="light"] #dock-extra #card-apps {
     background: rgb(233, 235, 243);
     background: color-mix(in srgb, rgb(var(--accent-rgb)) 8%, rgb(244, 247, 251) 92%);
@@ -1704,119 +1784,122 @@ html[data-theme="light"] .settings-switch input:checked + span::after {
     display: none !important;
 }
 
-/* Applications drawer follows the same bottom-sheet language as settings. */
+/* Applications use the same fixed widget geometry and motion as the mini-map. */
 #apps-drawer {
-  --settings-scale: calc(var(--ui-scale) * 1.564);
   position: fixed;
-  inset: 0;
-  z-index: 260;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: center;
-  padding: calc(18px * var(--ui-scale));
+  z-index: 60;
+  top: auto;
+  left: calc(108px * var(--ui-scale));
+  right: calc(18px * var(--ui-scale));
+  bottom: calc(147.6px * var(--ui-scale));
+  width: auto;
+  height: auto;
+  min-height: var(--apps-min-height, calc(596px * var(--ui-scale)));
+  max-height: var(--apps-max-height, calc(100vh - 165.6px * var(--ui-scale)));
+  display: block;
+  padding: 0;
   box-sizing: border-box;
   color: var(--text-primary);
-  background: rgba(4, 3, 8, 0.58);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  transform: none;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.25s ease, visibility 0s linear 0.32s;
+  transform: translateY(calc(18px * var(--ui-scale))) scale(0.985);
+  transform-origin: bottom center;
+  transition:
+    opacity 0.28s ease,
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.32s;
+  will-change: opacity, transform;
 }
 
 #apps-drawer.open {
-  transform: none;
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  transform: translateY(0) scale(1);
   transition-delay: 0s;
 }
 
 .apps-dialog {
   width: 100%;
-  min-height: min(calc(280px * var(--ui-scale)), calc(100vh - 36px * var(--ui-scale)));
-  max-height: calc(100vh - 36px * var(--ui-scale));
-  padding: calc(23.8px * var(--ui-scale));
+  height: auto;
+  min-height: var(--apps-min-height, calc(596px * var(--ui-scale)));
+  max-height: var(--apps-max-height, calc(100vh - 165.6px * var(--ui-scale)));
+  padding: calc(20px * var(--ui-scale));
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   border: 0;
-  border-radius: calc(44.2px * var(--ui-scale));
-  background: rgb(9, 11, 19);
-  background: color-mix(in srgb, rgb(var(--accent-rgb)) 2.5%, rgb(7, 9, 13) 97.5%);
-  box-shadow: 0 38px 110px rgba(0, 0, 0, 0.55), inset 0 1px rgba(255, 255, 255, 0.08);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  transform: translateY(calc(100% + 24px * var(--ui-scale)));
-  opacity: 0;
-  transition:
-    transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.24s ease;
-  will-change: transform, opacity;
-}
-
-#apps-drawer.open .apps-dialog {
-  transform: translateY(0);
+  border-radius: calc(28px * var(--ui-scale));
+  color: var(--text-primary);
+  background: var(--mini-map-panel-bg);
+  box-shadow: var(--mini-map-shadow);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transform: none;
   opacity: 1;
 }
 
+#mini-map-panel,
+.apps-dialog {
+  background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.1), rgba(var(--accent-rgb), 0.025)), rgba(7, 9, 13, 0.76);
+}
+
+#mini-map-placeholder {
+  background: transparent;
+}
+
+html[data-theme="light"] #mini-map-panel,
+html[data-theme="light"] .apps-dialog {
+  background: linear-gradient(145deg, rgba(255,255,255,.68), rgba(var(--accent-rgb),.06)), rgba(244,247,251,.7);
+}
+
 .apps-dialog .drawer-header {
-  min-height: calc(44px * var(--settings-scale));
-  margin: 0 0 calc(17px * var(--ui-scale));
+  min-height: calc(34px * var(--ui-scale));
+  margin: 0 0 calc(14px * var(--ui-scale));
   padding: 0;
   border: 0;
 }
 
 .apps-dialog .drawer-title {
   color: var(--text-primary);
-  font-size: calc(var(--font-card-title) * 2.006);
+  font-size: var(--font-card-title);
   font-weight: 500;
   letter-spacing: normal;
 }
 
-.apps-dialog .drawer-close,
-.apps-dialog .drawer-close:active {
-  width: calc(44px * var(--settings-scale));
-  height: calc(44px * var(--settings-scale));
-  flex: 0 0 auto;
-  border: 0;
-  border-radius: calc(14px * var(--settings-scale));
-  background: transparent;
-  box-shadow: none;
-  color: var(--text-primary);
-  font-size: calc(28px * var(--settings-scale));
-  line-height: 1;
-}
-
 .apps-dialog #apps-grid {
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   min-height: 0;
-  gap: calc(17px * var(--ui-scale));
+  gap: calc(14px * var(--ui-scale));
   padding: 0;
   align-content: flex-start;
   overflow-y: auto;
 }
 
 .apps-dialog .app-item {
+  width: calc(124px * var(--ui-scale));
+  height: calc(124px * var(--ui-scale));
   border: 0;
-  border-radius: calc(28.9px * var(--ui-scale));
+  border-radius: calc(22px * var(--ui-scale));
   background: var(--surface-soft);
   box-shadow: none;
 }
 
-html[data-theme="light"] #apps-drawer {
-  color: var(--text-primary);
-  background: rgba(218, 225, 233, 0.54);
+html #dock-extra #dock-apps-all.active {
+  color: var(--accent);
+  background: transparent;
+  box-shadow: none;
 }
 
-html[data-theme="light"] .apps-dialog {
-  background: rgb(233, 235, 243);
-  background: color-mix(in srgb, rgb(var(--accent-rgb)) 8%, rgb(244, 247, 251) 92%);
-  box-shadow: 0 38px 110px rgba(34, 43, 56, 0.2), inset 0 1px rgba(255, 255, 255, 0.9);
+@media (max-width: 1100px) {
+  #apps-drawer {
+    bottom: calc(249.6px * var(--ui-scale));
+  }
 }
 
 /* Top actions stay icon-only; toggled actions keep their accent state. */

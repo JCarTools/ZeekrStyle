@@ -8,9 +8,6 @@ function bootAndroidBridge() {
   // Каждый модуль запускается независимо: сбой одного не должен отключать остальные.
   try { window.ClimateFeedback?.start(); } catch (e) {}
   try { VolumeManager.init(); } catch (e) {}
-  // Выполняется после первого запроса климата и полностью отключается удалением
-  // подключения js/03-volume-initial-sync.js из index.html.
-  try { window.VolumeInitialSync?.run(); } catch (e) {}
   try { ThemeManager.scheduleThemeRefresh(); } catch (e) {}
 }
 

@@ -189,7 +189,7 @@ const ZeekrDock = (() => {
   function bindLaunchers() {
     el('dock-apps-all')?.addEventListener('click', () => {
       pickerSlot = null;
-      openDrawer();
+      toggleDrawer();
     });
   }
 

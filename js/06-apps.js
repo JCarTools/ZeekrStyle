@@ -32,11 +32,43 @@ function buildMyApps() {
 buildMyApps();
 
 // ── Шторка приложений ──────────────────────────────────────
+function syncDrawerGeometry() {
+  const drawer = el('apps-drawer');
+  const sidePanel = el('top-left');
+  if (!drawer || !sidePanel) return;
+
+  const sideRect = sidePanel.getBoundingClientRect();
+  const panelStyle = getComputedStyle(sidePanel);
+  const uiScale = Number.parseFloat(panelStyle.getPropertyValue('--ui-scale')) || 1;
+  const gap = 12 * uiScale;
+  const bottomGap = Math.max(0, window.innerHeight - sideRect.bottom);
+  const topGap = Math.max(18 * uiScale, sideRect.left);
+  const maxHeight = Math.max(sideRect.height, window.innerHeight - bottomGap - topGap);
+
+  drawer.style.left = `${sideRect.right + gap}px`;
+  drawer.style.right = `${sideRect.left}px`;
+  drawer.style.bottom = `${bottomGap}px`;
+  drawer.style.height = 'auto';
+  drawer.style.setProperty('--apps-min-height', `${sideRect.height}px`);
+  drawer.style.setProperty('--apps-max-height', `${maxHeight}px`);
+}
+
+function syncDrawerButton(opened) {
+  const button = el('dock-apps-all');
+  if (!button) return;
+  button.classList.toggle('active', opened);
+  button.setAttribute('aria-pressed', opened ? 'true' : 'false');
+  button.setAttribute('aria-label', opened ? 'Закрыть все приложения' : 'Открыть все приложения');
+}
+
 function openDrawer() {
   const grid = el('apps-grid');
   const drawer = el('apps-drawer');
+  window.MiniMapPanel?.close?.();
+  syncDrawerGeometry();
   drawer.classList.add('open');
   drawer.setAttribute('aria-hidden', 'false');
+  syncDrawerButton(true);
   grid.innerHTML = `<div class="apps-empty">Загрузка...</div>`;
   setTimeout(() => {
     try {
@@ -67,12 +99,19 @@ function closeDrawer() {
   const drawer = el('apps-drawer');
   drawer.classList.remove('open');
   drawer.setAttribute('aria-hidden', 'true');
+  syncDrawerButton(false);
   pickerSlot = null;
 }
-el('drawer-close').addEventListener('click', closeDrawer);
-el('apps-drawer').addEventListener('click', event => {
-  if (event.target === event.currentTarget) closeDrawer();
-});
+
+function toggleDrawer() {
+  if (el('apps-drawer').classList.contains('open')) closeDrawer();
+  else openDrawer();
+}
+
+window.addEventListener('resize', syncDrawerGeometry);
+if (typeof ResizeObserver === 'function' && el('top-left')) {
+  new ResizeObserver(syncDrawerGeometry).observe(el('top-left'));
+}
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && el('apps-drawer').classList.contains('open')) closeDrawer();
 });

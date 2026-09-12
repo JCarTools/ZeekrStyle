@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Zeekr style by Hudson</title>
 <link rel="stylesheet" href="style.css?v=20260910-3">
-    <link rel="stylesheet" href="zeekr.css?v=20260910-22">
+    <link rel="stylesheet" href="zeekr.css?v=20260912-14">
 </head>
 <body>
 
@@ -73,6 +73,11 @@
       </div>
     </div>
 
+    <div class="zeekr-brand" aria-label="JAECOO">
+      <span class="zeekr-brand-mark" aria-hidden="true"></span>
+      <img class="zeekr-brand-logo" src="img/jaecoo-logo.svg" alt="JAECOO">
+    </div>
+
     <!--<div id="weather-widget" class="weather-widget" aria-label="Погода">
       <div class="weather-widget-now">
         <div id="weather-icon" class="weather-widget-icon" aria-hidden="true"></div>
@@ -134,7 +139,7 @@
     <div id="dock-extra">
       <div class="temp-row" id="temp-row">
         <div class="dock-zone dock-zone-left">
-        <button type="button" class="dock-utility-btn" id="dock-apps-all" aria-label="Открыть все приложения">
+        <button type="button" class="dock-utility-btn" id="dock-apps-all" aria-label="Открыть все приложения" aria-pressed="false">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <rect x="3" y="3" width="7" height="7" rx="2"></rect>
             <rect x="14" y="3" width="7" height="7" rx="2"></rect>
@@ -219,10 +224,9 @@
 
 <!-- Шторка приложений -->
 <div id="apps-drawer" aria-hidden="true">
-  <div class="apps-dialog" role="dialog" aria-modal="true" aria-labelledby="apps-drawer-title">
+  <div class="apps-dialog" role="region" aria-labelledby="apps-drawer-title">
     <div class="drawer-header">
       <span class="drawer-title" id="apps-drawer-title">Приложения</span>
-      <button class="drawer-close" id="drawer-close" aria-label="Закрыть приложения">×</button>
     </div>
     <div id="apps-grid"></div>
   </div>
@@ -277,21 +281,19 @@ document.getElementById('btn-overlay').addEventListener('click', function() {
 <script src="js/01-utils.js?v=20260910-2"></script>
 <script src="js/12-rpm-log.js"></script>
 <script src="js/02-theme.js"></script>
-<script src="js/03-volume.js?v=20260910-2"></script>
-<!-- Изолированный первичный опрос громкости: эту строку можно удалить для отключения. -->
-<script src="js/03-volume-initial-sync.js?v=20260910-1"></script>
-<script src="js/03-player.js"></script>
+<script src="js/03-volume.js?v=20260911-2"></script>
+<script src="js/03-player.js?v=20260911-1"></script>
 <script src="js/04-climate.js"></script>
 <script src="js/05-temp.js?v=20260910-1"></script>
 <script src="js/05-outside-temp.js"></script>
 <script src="js/05-climate-feedback.js?v=20260910-3"></script>
-<script src="js/06-apps.js"></script>
+<script src="js/06-apps.js?v=20260912-2"></script>
 <script src="js/07-layout.js"></script>
 <script src="js/10-weather.js"></script>
 <script src="js/11-dashboard-settings.js"></script>
-<script src="js/13-mini-map.js"></script>
-<script src="js/14-zeekr-dock.js?v=20260910-8"></script>
+<script src="js/13-mini-map.js?v=20260912-1"></script>
+<script src="js/14-zeekr-dock.js?v=20260912-1"></script>
 <script src="js/08-android.js"></script>
-<script src="js/09-init.js?v=20260910-1"></script>
+<script src="js/09-init.js?v=20260911-2"></script>
 </body>
 </html>
