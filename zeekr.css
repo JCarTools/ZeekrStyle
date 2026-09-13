@@ -19,6 +19,8 @@ body {
   --tile-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -18px 28px rgba(0, 0, 0, 0.16);
   --glass-blur: blur(34px) saturate(135%);
   --glass-shadow: 0 24px 60px rgba(2, 1, 7, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.075);
+  --top-left-surface: linear-gradient(145deg, rgba(var(--accent-rgb), 0.1), rgba(var(--accent-rgb), 0.025)), rgba(7, 9, 13, 0.76);
+  --top-left-backdrop: blur(28px) saturate(125%);
   --accent: #675cff;
   --accent-rgb: 103, 92, 255;
   --accent-20: rgba(103, 92, 255, 0.18);
@@ -201,10 +203,10 @@ html[data-theme="light"] .zeekr-brand-logo {
   justify-content: flex-start;
   border: 0;
   border-radius: calc(24px * var(--ui-scale));
-  background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.1), rgba(var(--accent-rgb), 0.025)), rgba(7, 9, 13, 0.76);
+  background: var(--top-left-surface);
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(28px) saturate(125%);
-  -webkit-backdrop-filter: blur(28px) saturate(125%);
+  backdrop-filter: var(--top-left-backdrop);
+  -webkit-backdrop-filter: var(--top-left-backdrop);
 }
 
 .top-btn, .top-btn-settings {
@@ -1231,6 +1233,7 @@ html[data-theme="light"] body {
   --mini-map-glass-bg: rgba(255, 255, 255, 0.84);
   --mini-map-glass-border: rgba(var(--accent-rgb), 0.28);
   --mini-map-soft-text: rgba(24, 31, 42, 0.7);
+  --top-left-surface: linear-gradient(145deg, rgba(255,255,255,.68), rgba(var(--accent-rgb),.06)), rgba(244,247,251,.7);
 }
 
 html[data-theme="light"] #bg {
@@ -1264,7 +1267,7 @@ html[data-theme="light"] .seat-popover {
 }
 
 html[data-theme="light"] #top-left {
-  background: linear-gradient(145deg, rgba(255,255,255,.68), rgba(var(--accent-rgb),.06)), rgba(244,247,251,.7);
+  background: var(--top-left-surface);
 }
 
 html[data-theme="light"] #top-left .top-btn,
@@ -1799,10 +1802,14 @@ html[data-theme="light"] .settings-switch input:checked + span::after {
   display: block;
   padding: 0;
   box-sizing: border-box;
+  overflow: hidden;
+  border-radius: calc(28px * var(--ui-scale));
   color: var(--text-primary);
   background: transparent;
+  box-shadow: var(--mini-map-shadow);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  isolation: isolate;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -1836,8 +1843,8 @@ html[data-theme="light"] .settings-switch input:checked + span::after {
   border: 0;
   border-radius: calc(28px * var(--ui-scale));
   color: var(--text-primary);
-  background: var(--mini-map-panel-bg);
-  box-shadow: var(--mini-map-shadow);
+  background: transparent;
+  box-shadow: none;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   transform: none;
@@ -1845,8 +1852,10 @@ html[data-theme="light"] .settings-switch input:checked + span::after {
 }
 
 #mini-map-panel,
-.apps-dialog {
-  background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.1), rgba(var(--accent-rgb), 0.025)), rgba(7, 9, 13, 0.76);
+#apps-drawer {
+  background: var(--top-left-surface);
+  backdrop-filter: var(--top-left-backdrop);
+  -webkit-backdrop-filter: var(--top-left-backdrop);
 }
 
 #mini-map-placeholder {
@@ -1854,8 +1863,8 @@ html[data-theme="light"] .settings-switch input:checked + span::after {
 }
 
 html[data-theme="light"] #mini-map-panel,
-html[data-theme="light"] .apps-dialog {
-  background: linear-gradient(145deg, rgba(255,255,255,.68), rgba(var(--accent-rgb),.06)), rgba(244,247,251,.7);
+html[data-theme="light"] #apps-drawer {
+  background: var(--top-left-surface);
 }
 
 .apps-dialog .drawer-header {
