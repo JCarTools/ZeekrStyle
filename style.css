@@ -1416,6 +1416,7 @@ html[data-theme="light"] #album-art.empty { opacity: 0.72; }
 }
 
 #mini-map-panel[hidden],
+#mini-map-gps[hidden],
 #mini-map-radar[hidden],
 #mini-map-speed-limit[hidden] {
   display: none;

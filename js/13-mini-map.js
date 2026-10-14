@@ -58,8 +58,9 @@ const MiniMapPanel = (() => {
     const gap = 12 * uiScale;
 
     panel.style.left = `${sideRect.right + gap}px`;
-    panel.style.right = `${sideRect.left}px`;
+    panel.style.right = 'auto';
     panel.style.bottom = `${Math.max(0, window.innerHeight - sideRect.bottom)}px`;
+    panel.style.width = `${sideRect.height}px`;
     panel.style.height = `${sideRect.height}px`;
   }
 
@@ -297,7 +298,12 @@ const MiniMapPanel = (() => {
   function handleGpsSignal(raw) {
     const data = asObject(raw);
     const value = Number(data?.updateSignalQuality ?? data?.quality ?? data?.value ?? raw);
-    if (!Number.isFinite(value) || !gps) return false;
+    if (!gps) return false;
+    if (!Number.isFinite(value)) {
+      gps.hidden = true;
+      delete gps.dataset.level;
+      return false;
+    }
 
     let level = 5;
     if (value < 14) level = 0;
@@ -305,6 +311,7 @@ const MiniMapPanel = (() => {
     else if (value < 50) level = 2;
     else if (value < 70) level = 3;
     else if (value < 80) level = 4;
+    gps.hidden = false;
     gps.dataset.level = String(level);
     if (gpsText) gpsText.textContent = level === 0 ? 'GPS слабый' : `GPS ${Math.round(value)}`;
     return true;

@@ -407,9 +407,9 @@ html[data-theme="light"] .zeekr-brand-logo {
 #mini-map-panel {
   top: auto;
   left: calc(108px * var(--ui-scale));
-  right: calc(18px * var(--ui-scale));
+  right: auto;
   bottom: calc(147.6px * var(--ui-scale));
-  width: auto;
+  width: calc(596px * var(--ui-scale));
   height: calc(596px * var(--ui-scale));
   transform: none;
   border: 1px solid rgba(255, 233, 255, 0.12);
@@ -1980,4 +1980,354 @@ html[data-theme="light"] #dock-extra .volume-controls #btn-mute.active .volume-p
 
 .cl-icon.cl-icon-mirror-x img {
   transform: scaleX(-1);
+}
+
+/* Unified visual system: geometry, type, light theme, dock rhythm and motion. */
+body {
+  --radius-panel: calc(24px * var(--ui-scale));
+  --radius-control: calc(18px * var(--ui-scale));
+  --radius-compact: calc(14px * var(--ui-scale));
+  --space-panel: calc(20px * var(--ui-scale));
+  --space-group: calc(14px * var(--ui-scale));
+  --type-display: calc(46px * var(--ui-scale));
+  --type-heading: calc(28px * var(--ui-scale));
+  --type-title: calc(21px * var(--ui-scale));
+  --type-value: calc(30px * var(--ui-scale));
+  --type-body: calc(16px * var(--ui-scale));
+  --type-label: calc(14px * var(--ui-scale));
+  --type-caption: calc(12px * var(--ui-scale));
+  --surface-panel: var(--top-left-surface);
+  --surface-item: rgba(255, 255, 255, 0.07);
+  --surface-item-hover: rgba(255, 255, 255, 0.115);
+  --surface-panel-border: rgba(255, 255, 255, 0.08);
+  --surface-panel-shadow: 0 calc(24px * var(--ui-scale)) calc(64px * var(--ui-scale)) rgba(0, 0, 0, 0.32), inset 0 1px rgba(255, 255, 255, 0.07);
+  --surface-panel-backdrop: blur(28px) saturate(125%);
+  --motion-duration: 320ms;
+  --motion-fast: 180ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html[data-theme="light"] body {
+  --surface-panel: linear-gradient(145deg, rgba(255, 255, 255, 0.74), rgba(var(--accent-rgb), 0.055)), rgba(244, 247, 251, 0.76);
+  --surface-item: rgba(255, 255, 255, 0.56);
+  --surface-item-hover: rgba(var(--accent-rgb), 0.13);
+  --surface-panel-border: rgba(25, 32, 43, 0.1);
+  --surface-panel-shadow: 0 calc(22px * var(--ui-scale)) calc(55px * var(--ui-scale)) rgba(34, 43, 56, 0.14), inset 0 1px rgba(255, 255, 255, 0.82);
+}
+
+/* One geometry and one glass treatment for every floating surface. */
+#top-left,
+#player,
+#mini-map-panel,
+#apps-drawer,
+#settings-dialog,
+.seat-popover {
+  border: 0;
+  border-radius: var(--radius-panel);
+  background: var(--surface-panel);
+  box-shadow: var(--surface-panel-shadow);
+  backdrop-filter: var(--surface-panel-backdrop);
+  -webkit-backdrop-filter: var(--surface-panel-backdrop);
+}
+
+.apps-dialog {
+  padding: var(--space-panel);
+  border-radius: var(--radius-panel);
+}
+
+.apps-dialog .drawer-header {
+  min-height: calc(34px * var(--ui-scale));
+  margin-bottom: var(--space-group);
+}
+
+.apps-dialog .app-item,
+.settings-body > .settings-row,
+.settings-switch-stack,
+.seat-popover .cl-btn,
+.mini-map-navigation {
+  border-radius: var(--radius-control);
+  background: var(--surface-item);
+}
+
+.settings-segment,
+.settings-segment span,
+.ctrl-btn,
+#top-left .top-btn,
+#top-left .cl-btn {
+  border-radius: var(--radius-compact);
+}
+
+/* Four readable text levels plus large values. */
+#clock {
+  font-size: var(--type-display);
+  font-weight: 320;
+  font-variant-numeric: tabular-nums;
+}
+
+#date,
+#outside-temp {
+  font-size: var(--type-body);
+  font-weight: 300;
+}
+
+#settings-title {
+  font-size: var(--type-heading);
+  font-weight: 520;
+}
+
+.drawer-title,
+.apps-dialog .drawer-title {
+  font-size: var(--type-title);
+  font-weight: 520;
+}
+
+#track-title {
+  font-size: calc(19px * var(--ui-scale));
+  font-weight: 560;
+}
+
+#track-artist,
+.app-item span {
+  font-size: var(--type-label);
+}
+
+.settings-label,
+.seat-popover-title {
+  font-size: var(--type-body);
+  font-weight: 520;
+}
+
+.settings-segment span {
+  min-height: calc(58px * var(--ui-scale));
+  font-size: var(--type-body);
+  font-weight: 600;
+}
+
+.seat-popover-row-label,
+.seat-popover .cl-btn::before,
+#mini-map-next-road,
+#mini-map-remain-distance {
+  font-size: var(--type-caption);
+}
+
+#dock-extra .temp-display {
+  font-size: var(--type-value);
+  font-weight: 380;
+}
+
+#dock-extra .volume-percent {
+  font-weight: 450;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Every dock column now has the same hit-area width. */
+#dock-extra #temp-row {
+  --dock-left-inline-size: auto;
+  --dock-apps-inline-size: auto;
+  --dock-right-inline-size: auto;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 7fr);
+}
+
+#dock-extra .dock-zone,
+#dock-extra #card-apps,
+#dock-extra .my-grid {
+  min-width: 0;
+}
+
+#dock-extra .dock-utility-btn,
+#dock-extra .dock-seat-btn,
+#dock-extra .temp-btn,
+#dock-extra .cl-btn-vol,
+#dock-extra .my-slot {
+  color: var(--text-primary);
+  touch-action: manipulation;
+  transition: color var(--motion-fast) ease, background var(--motion-fast) ease, transform 120ms ease, opacity var(--motion-fast) ease;
+}
+
+#dock-extra .dock-utility-btn:focus-visible,
+#dock-extra .dock-seat-btn:focus-visible,
+#dock-extra .temp-btn:focus-visible,
+#dock-extra .cl-btn-vol:focus-visible,
+#dock-extra .my-slot:focus-visible,
+#top-left button:focus-visible {
+  outline: calc(2px * var(--ui-scale)) solid rgba(var(--accent-rgb), 0.78);
+  outline-offset: calc(-4px * var(--ui-scale));
+}
+
+#dock-extra .dock-utility-btn:active,
+#dock-extra .dock-seat-btn:active,
+#dock-extra .temp-btn:active,
+#dock-extra .cl-btn-vol:active,
+#dock-extra .my-slot:active {
+  background: var(--surface-item-hover);
+  transform: scale(0.92);
+}
+
+/* Complete light-theme contrast without hiding or recoloring whole controls. */
+html[data-theme="light"] #top-left,
+html[data-theme="light"] #player,
+html[data-theme="light"] #mini-map-panel,
+html[data-theme="light"] #apps-drawer,
+html[data-theme="light"] #settings-dialog,
+html[data-theme="light"] .seat-popover {
+  color: var(--text-primary);
+  background: var(--surface-panel);
+  box-shadow: var(--surface-panel-shadow);
+}
+
+html[data-theme="light"] #top-left .top-btn:not(.active),
+html[data-theme="light"] #top-left .cl-btn:not(.active),
+html[data-theme="light"] #dock-extra .dock-utility-btn,
+html[data-theme="light"] #dock-extra .dock-seat-btn,
+html[data-theme="light"] #dock-extra .temp-btn,
+html[data-theme="light"] #dock-extra .cl-btn-vol,
+html[data-theme="light"] #dock-extra .temp-display,
+html[data-theme="light"] #dock-extra .volume-percent {
+  color: var(--text-primary);
+  background: transparent;
+}
+
+html[data-theme="light"] .mini-map-glass,
+html[data-theme="light"] .apps-dialog .app-item,
+html[data-theme="light"] .settings-body > .settings-row,
+html[data-theme="light"] .settings-switch-stack,
+html[data-theme="light"] .seat-popover .cl-btn:not(.active) {
+  color: var(--text-primary);
+  border-color: var(--surface-panel-border);
+  background: var(--surface-item);
+}
+
+html[data-theme="light"] .settings-segment input:checked + span,
+html[data-theme="light"] .ctrl-btn.play,
+html[data-theme="light"] #btn-mini-map.active,
+html[data-theme="light"] #btn-overlay.active,
+html[data-theme="light"] #top-left .cl-btn.active,
+html[data-theme="light"] .seat-popover .cl-btn.active {
+  color: var(--accent-contrast);
+  background: var(--accent-control-bg);
+}
+
+.settings-segment input:checked + span,
+.ctrl-btn.play,
+.cl-btn.active {
+  color: var(--accent-contrast);
+}
+
+html[data-theme="light"] .settings-segment input:checked + span {
+  box-shadow: var(--accent-control-shadow);
+}
+
+html[data-theme="light"] #dock-extra .my-slot-icon .plus-icon,
+html[data-theme="light"] .dock-seat-btn:not([data-mode="heat"]):not([data-mode="vent"]) img {
+  filter: brightness(0) saturate(100%);
+}
+
+html[data-theme="light"] .drawer-title,
+html[data-theme="light"] #settings-title,
+html[data-theme="light"] #track-title,
+html[data-theme="light"] .app-item span {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] #track-artist,
+html[data-theme="light"] .settings-label,
+html[data-theme="light"] .seat-popover-title,
+html[data-theme="light"] .seat-popover-row-label,
+html[data-theme="light"] .seat-popover .cl-btn::before {
+  color: var(--text-secondary);
+}
+
+/* One restrained opening/closing motion language for every overlay. */
+#mini-map-panel,
+#apps-drawer {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(calc(14px * var(--ui-scale))) scale(0.99);
+  transform-origin: bottom left;
+  transition:
+    opacity var(--motion-fast) ease,
+    transform var(--motion-duration) var(--motion-ease),
+    visibility 0s linear var(--motion-duration);
+}
+
+#mini-map-panel.is-open,
+#apps-drawer.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  transition-delay: 0s;
+}
+
+#settings-backdrop {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity var(--motion-fast) ease, visibility 0s linear 0s;
+}
+
+#settings-backdrop.settings-hidden {
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition-delay: 0s, var(--motion-duration);
+}
+
+#settings-dialog {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transform-origin: bottom center;
+  transition: opacity var(--motion-fast) ease, transform var(--motion-duration) var(--motion-ease);
+}
+
+.settings-hidden #settings-dialog {
+  opacity: 0;
+  transform: translateY(calc(24px * var(--ui-scale))) scale(0.99);
+}
+
+.seat-popover {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(calc(14px * var(--ui-scale))) scale(0.99);
+  transform-origin: bottom left;
+  transition:
+    opacity var(--motion-fast) ease,
+    transform var(--motion-duration) var(--motion-ease),
+    visibility 0s linear var(--motion-duration);
+}
+
+.seat-popover.open,
+#driver-seat-popover.open,
+#passenger-seat-popover.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  transition-delay: 0s;
+}
+
+@media (max-width: 1100px) {
+  #dock-extra #temp-row {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mini-map-panel,
+  #apps-drawer,
+  #settings-backdrop,
+  #settings-dialog,
+  .seat-popover,
+  #dock-extra button,
+  #top-left button {
+    transition-duration: 1ms !important;
+  }
 }
