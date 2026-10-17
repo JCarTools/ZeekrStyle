@@ -1,6 +1,5 @@
 function buildMyApps() {
   const grid = el('my-grid');
-  if (!grid) return;
   grid.innerHTML = '';
   for (let i = 1; i <= MY_SLOTS; i++) {
     const saved = loadLS('lite_my_'+i);
