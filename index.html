@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Zeekr style by Hudson</title>
 <link rel="stylesheet" href="style.css?v=20261014-1">
-    <link rel="stylesheet" href="zeekr.css?v=20261014-5">
+    <link rel="stylesheet" href="zeekr.css?v=20261017-1">
 </head>
 <body>
 
@@ -174,10 +174,21 @@
         </div>
         </div>
 
-        <div class="card" id="card-apps">
-          <div id="body-apps">
-            <div class="my-grid" id="my-grid"></div>
+        <div class="fan-speed-control" id="fan-speed-control" aria-label="Скорость вентилятора">
+          <button type="button" class="fan-speed-btn fan-speed-down" id="btn-fan-down" aria-label="Уменьшить скорость вентилятора">
+            <svg class="dock-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <div class="fan-speed-display" id="fan-speed-display" aria-label="Скорость вентилятора">
+            <svg class="fan-speed-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M5.64248 9.85179C5.99398 10.3011 6.46668 10.6406 7.00481 10.83C7.54294 11.0194 8.12403 11.0509 8.67948 10.9208C8.06948 12.3558 6.75648 14.2208 4.42448 14.9328C4.27011 14.9828 4.10386 14.9828 3.94948 14.9328C2.76948 14.5228 1.67148 13.1158 1.48948 11.5028C1.42548 10.9248 1.99748 10.5378 2.57948 10.5428C3.6396 10.5511 4.68738 10.315 5.64148 9.85279M10.9415 7.41479C12.3825 8.02979 14.2155 9.31779 14.9275 11.5708C14.9809 11.7287 14.9809 11.8999 14.9275 12.0578C14.5065 13.2188 13.0805 14.2988 11.4475 14.4768C10.8665 14.5388 10.4765 13.9618 10.4805 13.3768C10.4845 12.3447 10.2483 11.3258 9.79048 10.4008C10.2453 10.0631 10.5949 9.60321 10.7985 9.07457C11.0021 8.54593 11.0514 7.97033 10.9405 7.41479M7.99948 6.00079C8.52992 6.00079 9.03862 6.21151 9.4137 6.58658C9.78877 6.96165 9.99948 7.47036 9.99948 8.00079C9.99948 8.53123 9.78877 9.03993 9.4137 9.41501C9.03862 9.79008 8.52992 10.0008 7.99948 10.0008C7.46905 10.0008 6.96034 9.79008 6.58527 9.41501C6.2102 9.03993 5.99948 8.53123 5.99948 8.00079C5.99948 7.47036 6.2102 6.96165 6.58527 6.58658C6.96034 6.21151 7.46905 6.00079 7.99948 6.00079ZM4.55048 1.52479C5.13248 1.46179 5.52148 2.03979 5.51748 2.62479C5.51311 3.65606 5.74865 4.67422 6.20548 5.59879C5.75062 5.93665 5.40113 6.39679 5.1977 6.92562C4.99428 7.45445 4.9453 8.0302 5.05648 8.58579C3.61548 7.97079 1.78348 6.68279 1.07148 4.43079C1.01784 4.27255 1.01784 4.10104 1.07148 3.94279C1.49248 2.78279 2.91748 1.70279 4.55048 1.52479ZM11.5725 1.06879C11.7269 1.01874 11.8931 1.01874 12.0475 1.06879C13.2275 1.47879 14.3255 2.88679 14.5075 4.49879C14.5725 5.07779 14.0005 5.46479 13.4185 5.45879C12.358 5.45035 11.3099 5.68647 10.3555 6.14879C10.0038 5.69944 9.53086 5.36011 8.99254 5.17087C8.45422 4.98162 7.87299 4.95037 7.31748 5.08079C7.92748 3.64579 9.24148 1.78279 11.5725 1.06879Z" fill="currentColor"/>
+            </svg>
+            <span class="fan-speed-bars" id="fan-speed-bars" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </span>
           </div>
+          <button type="button" class="fan-speed-btn fan-speed-up" id="btn-fan-up" aria-label="Увеличить скорость вентилятора">
+            <svg class="dock-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
         </div>
 
         <div class="dock-zone dock-zone-right">
@@ -287,6 +298,7 @@ document.getElementById('btn-overlay').addEventListener('click', function() {
 <script src="js/05-temp.js?v=20260910-1"></script>
 <script src="js/05-outside-temp.js"></script>
 <script src="js/05-climate-feedback.js?v=20260910-3"></script>
+<script src="js/16-fan.js?v=20261017-1"></script>
 <script src="js/06-apps.js?v=20260912-2"></script>
 <script src="js/07-layout.js"></script>
 <script src="js/10-weather.js"></script>

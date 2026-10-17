@@ -2331,3 +2331,190 @@ html[data-theme="light"] .seat-popover .cl-btn::before {
     transition-duration: 1ms !important;
   }
 }
+
+/* Center dock control: fan speed replaces the former quick-app slots. */
+#dock-extra #temp-row {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 7fr);
+}
+
+#dock-extra .fan-speed-control {
+  position: relative;
+  z-index: 3;
+  grid-column: 2;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  height: calc(129.6px * var(--ui-scale));
+  color: var(--text-primary);
+}
+
+#dock-extra .fan-speed-btn,
+#dock-extra .fan-speed-display {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+#dock-extra .fan-speed-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: color var(--motion-fast) ease, background var(--motion-fast) ease, transform 120ms ease, opacity var(--motion-fast) ease;
+}
+
+#dock-extra .fan-speed-btn .dock-chevron {
+  width: calc(37.8px * var(--ui-scale));
+  height: calc(37.8px * var(--ui-scale));
+}
+
+#dock-extra .fan-speed-down,
+#dock-extra .fan-speed-up {
+  color: var(--text-primary);
+}
+
+#dock-extra .fan-speed-btn:active {
+  background: var(--surface-item-hover);
+  transform: scale(0.92);
+}
+
+#dock-extra .fan-speed-btn:focus-visible {
+  outline: calc(2px * var(--ui-scale)) solid rgba(var(--accent-rgb), 0.78);
+  outline-offset: calc(-4px * var(--ui-scale));
+}
+
+#dock-extra .fan-speed-btn:disabled {
+  opacity: 0.28;
+  cursor: default;
+  transform: none;
+}
+
+#dock-extra .fan-speed-display {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+}
+
+#dock-extra .fan-speed-icon {
+  width: calc(48px * var(--ui-scale));
+  height: calc(48px * var(--ui-scale));
+  color: currentColor;
+  opacity: 0.9;
+  transform-origin: center;
+}
+
+#dock-extra .fan-speed-icon.is-running {
+  color: var(--accent);
+}
+
+#dock-extra .fan-speed-bars {
+  position: absolute;
+  left: 50%;
+  bottom: calc(25px * var(--ui-scale));
+  display: flex;
+  align-items: flex-end;
+  gap: calc(3px * var(--ui-scale));
+  transform: translateX(-50%);
+}
+
+#dock-extra .fan-speed-bars i {
+  display: block;
+  width: calc(4px * var(--ui-scale));
+  height: calc(4px * var(--ui-scale));
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  transition: background var(--motion-fast) ease, transform var(--motion-fast) ease;
+}
+
+#dock-extra .fan-speed-bars i.on {
+  background: var(--accent);
+  transform: scale(1.08);
+}
+
+html[data-theme="light"] #dock-extra .fan-speed-display {
+  color: var(--text-primary);
+}
+
+html[data-theme="light"] #dock-extra .fan-speed-bars i {
+  background: rgba(18, 24, 33, 0.2);
+}
+
+html[data-theme="light"] #dock-extra .fan-speed-bars i.on {
+  background: var(--accent);
+}
+
+@media (max-width: 1100px) {
+  #dock-extra #temp-row {
+    --dock-main-row-height: calc(129.6px * var(--ui-scale));
+    --dock-total-height: var(--dock-main-row-height);
+    grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 7fr);
+    grid-template-rows: var(--dock-main-row-height);
+    min-height: var(--dock-main-row-height);
+    height: var(--dock-main-row-height);
+    gap: 0;
+    overflow: visible;
+    background: rgba(9, 11, 19, 0.8);
+    background: color-mix(in srgb, rgba(var(--accent-rgb), 0.8) 2.5%, rgba(7, 9, 13, 0.8) 97.5%);
+    box-shadow: 0 -18px 48px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(28px) saturate(125%);
+    -webkit-backdrop-filter: blur(28px) saturate(125%);
+  }
+
+  #dock-extra #temp-row::before { display: none; }
+
+  #dock-extra .dock-zone,
+  #dock-extra .fan-speed-control {
+    width: 100%;
+    height: var(--dock-main-row-height);
+  }
+
+  #dock-extra .dock-zone-left {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  #dock-extra .fan-speed-control {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  #dock-extra .dock-zone-right {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  #bottom,
+  #root.apps-stacked #bottom {
+    margin-bottom: calc(129.6px * var(--ui-scale));
+  }
+
+  #top-left,
+  #mini-map-panel {
+    bottom: calc(147.6px * var(--ui-scale));
+  }
+
+  #driver-seat-popover,
+  #passenger-seat-popover {
+    bottom: calc(145.8px * var(--ui-scale));
+  }
+
+  html[data-theme="light"] #dock-extra #temp-row {
+    background: rgba(233, 235, 243, 0.8);
+    background: color-mix(in srgb, rgba(var(--accent-rgb), 0.8) 8%, rgba(244, 247, 251, 0.8) 92%);
+    box-shadow: 0 -14px 38px rgba(40, 49, 63, 0.12);
+  }
+}

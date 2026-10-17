@@ -6,6 +6,7 @@ function bootAndroidBridge() {
   if (!window.androidApi) return;
   notifyAndroidReady();
   // Каждый модуль запускается независимо: сбой одного не должен отключать остальные.
+  try { window.FanManager?.init(); } catch (e) {}
   try { window.ClimateFeedback?.start(); } catch (e) {}
   try { VolumeManager.init(); } catch (e) {}
   try { ThemeManager.scheduleThemeRefresh(); } catch (e) {}
