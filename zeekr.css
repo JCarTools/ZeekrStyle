@@ -2519,6 +2519,10 @@ html[data-theme="light"] #dock-extra .fan-speed-bars i.on {
   }
 }
 /* Navigation prompts: compact Yandex Navigator-inspired HUD. */
+#mini-map-panel #mini-map-navigation[hidden] {
+  display: none !important;
+}
+
 #mini-map-panel .mini-map-navigation {
   position: absolute;
   z-index: 5;

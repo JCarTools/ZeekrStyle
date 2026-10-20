@@ -244,13 +244,19 @@ const MiniMapPanel = (() => {
   }
 
   function renderNavigation(data) {
-    const enabled = asBoolean(data.naviOn, true);
+    const hasRouteData = Number(data.turnDist) > 0
+      || Number(data.remainDist) > 0
+      || Number(data.turnType) > 0
+      || String(data.nextRoad || '').trim().length > 0;
+    const enabled = asBoolean(data.naviOn, hasRouteData);
+    if (navigation) navigation.hidden = !enabled;
     navigation?.classList.toggle('is-inactive', !enabled);
     if (!enabled) {
       if (turnDistance) turnDistance.textContent = '—';
       if (remainDistance) remainDistance.textContent = '';
       if (nextRoad) nextRoad.textContent = 'Маршрут не запущен';
       if (speedLimit) speedLimit.hidden = true;
+      panel?.classList.remove('navigation-urgent');
       return;
     }
 
