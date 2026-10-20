@@ -2333,6 +2333,10 @@ html[data-theme="light"] .seat-popover .cl-btn::before {
 }
 
 /* Navigation prompts: compact Yandex Navigator-inspired HUD. */
+#mini-map-panel #mini-map-navigation[hidden] {
+  display: none !important;
+}
+
 #mini-map-panel .mini-map-navigation {
   position: absolute;
   z-index: 5;
